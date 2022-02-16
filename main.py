@@ -30,9 +30,16 @@ if __name__ == "__main__":
         metadata_list.append(parse_metadata(metadata))
     # now, with metadata_list, append hlo_fusion's computation property into hlo_breakdown
     output_name = hlo_fusion
+    output_name = "Fusion"
+    if len(metadata_list) != 0:
+      output_name += "("
     for metadata in metadata_list:
-      output_name += "$"
       output_name += metadata
+      if metadata != metadata_list[-1]:
+        output_name += "+"
+    if len(metadata_list) != 0:
+      output_name += ")"
+
     hlo_breakdown.append(output_name)
   
   # write result to file

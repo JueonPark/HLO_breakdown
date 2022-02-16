@@ -2,18 +2,18 @@ def parse_metadata(input):
   # if (input.find("gradient_tape") != -1):
   #   return "backward"
   if (input.find("SparseSoftmaxCrossEntropyWithLogits") != -1):
-    return "SoftmaxCrossEntropy"
+    return "Loss"
   elif (input.find("layer_norm") != -1):
-    return "layernorm"
+    return "LN"
   elif (input.find("LayerNorm") != -1):
-    return "layernorm"
+    return "LN"
   elif (input.find("dropout") != -1):
-    return "dropout"
+    return "Dropout"
   elif (input.find("Softmax") != -1):
-    return "softmax"
+    return "Softmax"
   elif (input.find("BiasAdd") != -1):
-    return "biasadd"
+    return "Biasadd"
   elif (input.find("Gelu") != -1):
-    return "gelu"
+    return "Gelu"
   else:
     return None
