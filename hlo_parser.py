@@ -9,7 +9,6 @@ class HloTable(object):
 		self.hlo_table = dict()
 		splitted_hlo_string = hlo_string.split('\n\n')
 		for computation in splitted_hlo_string:
-			metadata = []
 			lines = computation.split('\n')
 			if not 'fused_computation' in lines[0]:
 				# hlo_table only contains fusions
@@ -39,7 +38,7 @@ class HloTable(object):
 				if (start == -1):
 					# print("metadata not found")
 					continue
-				# print(line[start+9:-2])
+				# print(line[start+9:-2]) # metadata string
 				self.hlo_table[fusion_string]["data"].append(line[start+9:-2])
 
 
