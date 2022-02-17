@@ -1,7 +1,5 @@
 """
 hlo graph에 있는 각 fusion 별로 어떠한 computation인지 알려준다.
-result: array of fused computations:
- - [(fusion.181, fused$softmax$dropout$...), (fusion.180, fused$layernorm$gelu), ...]
 """
 import csv
 import argparse
