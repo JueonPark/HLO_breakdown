@@ -1,3 +1,4 @@
+GPUS,CONFIG,ID,DIRECTION,NAME,CYCLE
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,8095,forward,Fusion,6754
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,8096,forward,Fusion(Dropout),6755
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,8097,forward,Fusion(Dropout),8027

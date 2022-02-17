@@ -40,8 +40,8 @@ if __name__ == "__main__":
   # breakdown["_ZN5cudnn6detail21bn_bw_1C11_kernel_newIff6float2Li512ELb1ELi1EEEvT0_S3_S3_S3_17cudnnTensorStructPKT_S4_S7_S4_PS5_PKS3_PS3_SB_SA_SA_S3_"] = "cudnn_bw"
 
   csv_result = csv.reader(result_file)
-  csv_to_rewrite = csv.writer(open(args.csv[:-4], "w"))
-  next(csv_result)
+  csv_to_rewrite = csv.writer(open(args.csv[:-4] + "_breakdown.csv", "w"))
+  csv_to_rewrite.writerow(next(csv_result))
   if args.baseline is None:
     # ndp
     for row in csv_result:
