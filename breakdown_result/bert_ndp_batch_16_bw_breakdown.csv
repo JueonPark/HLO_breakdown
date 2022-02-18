@@ -13,7 +13,7 @@ GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8204,backward,Fusi
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8204,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8205,backward,dwFC,42573
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8205,backward,NDP_OP,0
-GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8206,backward,Fusion(Gelu+LN),76812
+GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8206,backward,Fusion(LN+Gelu),76812
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8206,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8207,backward,Fusion(LN),25982
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8207,backward,NDP_OP,0
@@ -23,7 +23,7 @@ GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8209,backward,Fusi
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8209,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8210,backward,dxFC,7621303
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8210,backward,NDP_OP,0
-GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8211,backward,Fusion(Biasadd+Loss),657217
+GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8211,backward,Fusion(Loss+Biasadd),657217
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8211,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8212,backward,Fusion(Biasadd),757769
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8212,backward,NDP_OP,0
@@ -31,7 +31,7 @@ GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8213,backward,Fusi
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8213,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8214,backward,others,869360
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8214,backward,NDP_OP,0
-GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8215,backward,Fusion(Biasadd+Loss),2078625
+GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8215,backward,Fusion(Loss+Biasadd),2078625
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8215,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8216,backward,others,10300
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8216,backward,NDP_OP,0
@@ -51,7 +51,7 @@ GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8223,backward,dwFC
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8223,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8224,backward,Fusion(LN),52872
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8224,backward,NDP_OP,0
-GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8225,backward,Fusion(Gelu+LN+Biasadd),124709
+GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8225,backward,Fusion(LN+Gelu+Biasadd),124709
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8225,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8226,backward,dwFC,104300
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8226,backward,NDP_OP,0
@@ -67,7 +67,7 @@ GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8231,backward,dwFC
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8231,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8232,backward,dxFC,4657904
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8232,backward,NDP_OP,0
-GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8233,backward,Fusion(Gelu+Dropout),2050243
+GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8233,backward,Fusion(Dropout+Gelu),2050243
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8233,backward,NDP_OP,0
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8234,backward,Fusion,839509
 GPU_1_Buffer_1,V100_downscaled_HBM2_PCI6x1_write_prio_debug,0,8234,backward,NDP_OP,0
