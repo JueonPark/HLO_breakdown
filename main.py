@@ -46,33 +46,33 @@ if __name__ == "__main__":
     # ndp
     for row in csv_result:
       try:
-        row[5] = breakdown[row[5]]
+        row.append(breakdown[row[5]])
       except:
         if (row[5].find("nn") != -1 and row[5].find("gemm") != -1):
-          row[5] = "GEMM"
+          row.append("GEMM")
         elif (row[5].find("tn") != -1 and row[5].find("gemm") != -1):
-          row[5] = "dxFC"
+          row.append("dxFC")
         elif (row[5].find("nt") != -1 and row[5].find("gemm") != -1):
-          row[5] = "dwFC"
+          row.append("dwFC")
         elif (row[5].find("cudnn") != -1):
-          row[5] = "cudnn"
+          row.append("cudnn")
         else:
-          row[5] = "others"
+          row.append("others")
       csv_to_rewrite.writerow(row)
   else:
     # baseline
     for row in csv_result:
       try:
-        row[4] = breakdown[row[4]]
+        row.append(breakdown[row[4]])
       except:
         if (row[4].find("nn") != -1 and row[4].find("gemm") != -1):
-          row[4] = "GEMM"
+          row.append("GEMM")
         elif (row[4].find("tn") != -1 and row[4].find("gemm") != -1):
-          row[4] = "dxFC"
+          row.append("dxFC")
         elif (row[4].find("nt") != -1 and row[4].find("gemm") != -1):
-          row[4] = "dwFC"
+          row.append("dwFC")
         elif (row[4].find("cudnn") != -1):
-          row[4] = "cudnn"
+          row.append("cudnn")
         else:
-          row[4] = "others"
+          row.append("others")
       csv_to_rewrite.writerow(row)
