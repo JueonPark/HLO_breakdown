@@ -24,6 +24,7 @@ def rewrite_fusion_kernel(hlo_table):
       else:
         metadata_list.append(parse_metadata(metadata))
     # now, with metadata_list, append hlo_fusion's computation property into hlo_breakdown
+    metadata_list.sort()
     output_name = hlo_fusion
     output_name = "Fusion"
     if len(metadata_list) != 0:

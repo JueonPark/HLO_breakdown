@@ -51,9 +51,15 @@ if __name__ == "__main__":
         if (row[5].find("nn") != -1 and row[5].find("gemm") != -1):
           row.append("GEMM")
         elif (row[5].find("tn") != -1 and row[5].find("gemm") != -1):
-          row.append("dxFC")
+          if (row[4] == "forward"):
+            row.append("GEMM")
+          else:
+            row.append("dxFC")
         elif (row[5].find("nt") != -1 and row[5].find("gemm") != -1):
-          row.append("dwFC")
+          if (row[4] == "forward"):
+            row.append("GEMM")
+          else:
+            row.append("dwFC")
         elif (row[5].find("cudnn") != -1):
           row.append("cudnn")
         else:
