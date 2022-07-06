@@ -3,6 +3,8 @@ def parse_metadata(input):
   #   return "backward"
   if (input.find("SparseSoftmaxCrossEntropyWithLogits") != -1):
     return "Loss"
+  elif (input.find("bert_pretrain_loss_and_metric_layer") != -1):
+    return "Loss"
   elif (input.find("layer_norm") != -1):
     return "LN"
   elif (input.find("LayerNorm") != -1):
