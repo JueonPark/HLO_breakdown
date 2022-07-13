@@ -3,7 +3,6 @@ parse hlo string
 fusion -> 
 return metadata in hlo text indexed by HLO op name
 """
-
 class HloTable(object):
 	def __init__(self, hlo_string):
 		self.hlo_table = dict()

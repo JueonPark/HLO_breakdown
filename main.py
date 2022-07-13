@@ -1,5 +1,5 @@
 """
-hlo graph에 있는 각 fusion 별로 어떠한 computation인지 알려준다.
+Does the breakdown of all the kernels, especially fused computation.
 """
 import csv
 import argparse
@@ -16,7 +16,7 @@ if __name__ == "__main__":
   hlo_file = open(args.hlo, "r")
   hlo_table = HloTable(hlo_file.read()).hlo_table
 
-  # csv file을 읽고, kernel name을 바꿔준다.
+  # Read the csv file and change the kernel name.
   breakdown = rewrite_fusion_kernel(hlo_table)
   # NDP
   breakdown["NDP_OP"] = "NDP_OP"
