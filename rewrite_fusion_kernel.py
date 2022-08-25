@@ -1,5 +1,5 @@
 """
-hlo graph에 있는 각 fusion 별로 어떠한 computation인지 알려준다.
+notify which fusion kernel does which computation in hlo_table
 """
 import csv
 import argparse
