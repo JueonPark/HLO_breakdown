@@ -4,9 +4,10 @@ notify which fusion kernel does which computation in hlo_table
 import csv
 import argparse
 from hlo_parser import HloTable
-from bert_metadata import parse_metadata
+from bert_metadata import parse_bert_metadata
+from cnn_metadata import parse_cnn_metadata
 
-def rewrite_fusion_kernel(hlo_table):
+def rewrite_fusion_kernel(hlo_table, model):
   """
   generate dictionary of original fusion kernel's name and its new name
   """
@@ -16,13 +17,23 @@ def rewrite_fusion_kernel(hlo_table):
     # for each fusion's metadata:
     metadata_list = []
     for metadata in hlo_table[hlo_fusion]["data"]:
-      parsed_metadata = parse_metadata(metadata)
-      if parsed_metadata in metadata_list:
-        continue
-      elif parsed_metadata is None:
-        continue
+      if model == "bert":
+        parsed_metadata = parse_bert_metadata(metadata)
+        if parsed_metadata in metadata_list:
+          continue
+        elif parsed_metadata is None:
+          continue
+        else:
+          metadata_list.append(parse_bert_metadata(metadata))
       else:
-        metadata_list.append(parse_metadata(metadata))
+        parsed_metadata = parse_cnn_metadata(metadata)
+        if parsed_metadata in metadata_list:
+          continue
+        elif parsed_metadata is None:
+          continue
+        else:
+          metadata_list.append(parse_cnn_metadata(metadata))
+
     # now, with metadata_list, append hlo_fusion's computation property into hlo_breakdown
     metadata_list.sort()
     output_name = hlo_fusion

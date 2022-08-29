@@ -17,7 +17,7 @@
   # breakdown['turing_fp16_s884gemm_fp16_128x64_ldg8_f2f_nt'] = 'dwFC'
   # breakdown["_ZN5cudnn6detail21bn_bw_1C11_kernel_newIff6float2Li512ELb1ELi1EEEvT0_S3_S3_S3_17cudnnTensorStructPKT_S4_S7_S4_PS5_PKS3_PS3_SB_SA_SA_S3_"] = "cudnn_bw"
 
-def parse_metadata(input):
+def parse_bert_metadata(input):
   # if (input.find("gradient_tape") != -1):
   #   return "backward"
   if (input.find("SparseSoftmaxCrossEntropyWithLogits") != -1):
