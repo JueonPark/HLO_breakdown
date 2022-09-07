@@ -120,6 +120,19 @@ def rewrite_transformer_kernel(row):
     row.append("others")
   return row
 
+def rewrite_dlrm_kernel(row):
+  if (row[4].find("gemm") != -1):
+    row.append("GEMM")
+  elif (row[4].find("broadcast_139") != -1):
+    row.append("Broadcast")
+  elif (row[4].find("wgrad") != -1):
+    row.append("wgrad")
+  elif (row[4].find("dgrad") != -1):
+    row.append("dgrad")
+  else:
+    row.append("others")
+  return row
+
 if __name__ == "__main__":
   args = parser.parse_args()
   model = ""
@@ -131,6 +144,8 @@ if __name__ == "__main__":
     model = "mobilenet"
   elif args.model.find("transformer") != -1:
     model = "transformer"
+  elif args.model.find("dlrm") != -1:
+    model = "dlrm"
   else:
     model = args.model
   print(model)
@@ -172,6 +187,8 @@ if __name__ == "__main__":
         row = rewrite_mobilenet_kernel(row)
       elif model == "transformer":
         row = rewrite_transformer_kernel(row)
+      elif model == "dlrm":
+        row = rewrite_dlrm_kernel(row)
       else:
         pass
     csv_to_rewrite.writerow(row)
