@@ -1,11 +1,9 @@
 """
 notify which fusion kernel does which computation in hlo_table
 """
-import csv
 import argparse
 from hlo_parser import HloTable
-from bert_metadata import parse_bert_metadata
-from cnn_metadata import parse_cnn_metadata
+from hlo_metadata import *
 
 def rewrite_fusion_kernel(hlo_table, model):
   """
@@ -25,6 +23,14 @@ def rewrite_fusion_kernel(hlo_table, model):
           continue
         else:
           metadata_list.append(parse_bert_metadata(metadata))
+      elif model == "vit":
+        parsed_metadata = parse_vit_metadata(metadata)
+        if parsed_metadata in metadata_list:
+          continue
+        elif parsed_metadata is None:
+          continue
+        else:
+          metadata_list.append(parse_vit_metadata(metadata))
       else:
         parsed_metadata = parse_cnn_metadata(metadata)
         if parsed_metadata in metadata_list:

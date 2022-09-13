@@ -5,133 +5,11 @@ import csv
 import argparse
 import pathlib
 from hlo_parser import HloTable
+from kernel_metadata import *
 from rewrite_fusion_kernel import rewrite_fusion_kernel
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--model", type=str, required=True)
-# parser.add_argument('--csv', type=str, required=True, help="result csv file (.csv)")
-# parser.add_argument('--hlo', type=str, required=True, help="xla hlo graph path (.txt)")
-
-def rewrite_bert_kernel(row):
-  if (row[4].find("nn") != -1 and row[4].find("gemm") != -1):
-    row.append("GEMM")
-  elif (row[4].find("tn") != -1 and row[4].find("gemm") != -1):
-    row.append("dxFC")
-  elif (row[4].find("nt") != -1 and row[4].find("gemm") != -1):
-    row.append("dwFC")
-  elif (row[4].find("cudnn") != -1):
-    row.append("cudnn")
-  else:
-    row.append("others")
-  return row
-  
-def rewrite_resnet_kernel(row):
-  if (row[4].find("dgemm") != -1):
-    row.append("dxFC")
-  elif (row[4].find("wgemm") != -1):
-    row.append("dwFC")
-  elif (row[4].find("MetaKernel") != -1):
-    row.append("elementwise")
-  elif (row[4].find("add") != -1):
-    row.append("elementwise")
-  elif (row[4].find("mul") != -1):
-    row.append("elementwise")
-  elif (row[4].find("log") != -1):
-    row.append("elementwise")
-  elif (row[4].find("tn") != -1 and row[4].find("gemm") != -1):
-    row.append("dxFC")
-  elif (row[4].find("nt") != -1 and row[4].find("gemm") != -1):
-    row.append("dwFC")
-  elif (row[4].find("1688cudnn") != -1):
-    row.append("CONV")
-  elif (row[4].find("gemm") != -1):
-    row.append("FC")
-  elif (row[4].find("convol") != -1):
-    row.append("CONV")
-  elif (row[4].find("conv2d") != -1):
-    row.append("CONV")
-  elif (row[4].find("conv") != -1):
-    row.append("CONV")
-  elif (row[4].find("first_layer") != -1):
-    row.append("CONV")
-  elif (row[4].find("pool") != -1):
-    row.append("POOLING")
-  elif (row[4].find("c1_k1") != -1):
-    row.append("CONV")
-  elif (row[4].find("bn") != -1):
-    row.append("BN+ELEMWISE")
-  elif (row[4].find("adam") != -1):
-    row.append("OPT")
-  else:
-    row.append("others")
-  return row
-
-def rewrite_mobilenet_kernel(row):
-  if (row[4].find("dgemm") != -1):
-    row.append("dxFC")
-  elif (row[4].find("wgemm") != -1):
-    row.append("dwFC")
-  elif (row[4].find("MetaKernel") != -1):
-    row.append("elementwise")
-  elif (row[4].find("add") != -1):
-    row.append("elementwise")
-  elif (row[4].find("mul") != -1):
-    row.append("elementwise")
-  elif (row[4].find("log") != -1):
-    row.append("elementwise")
-  elif (row[4].find("tn") != -1 and row[4].find("gemm") != -1):
-    row.append("dxFC")
-  elif (row[4].find("nt") != -1 and row[4].find("gemm") != -1):
-    row.append("dwFC")
-  elif (row[4].find("1688cudnn") != -1):
-    row.append("CONV")
-  elif (row[4].find("gemm") != -1):
-    row.append("FC")
-  elif (row[4].find("convol") != -1):
-    row.append("CONV")
-  elif (row[4].find("conv2d") != -1):
-    row.append("CONV")
-  elif (row[4].find("conv") != -1):
-    row.append("CONV")
-  elif (row[4].find("first_layer") != -1):
-    row.append("CONV")
-  elif (row[4].find("pool") != -1):
-    row.append("POOLING")
-  elif (row[4].find("c1_k1") != -1):
-    row.append("CONV")
-  elif (row[4].find("bn") != -1):
-    row.append("BN+ELEMWISE")
-  elif (row[4].find("adam") != -1):
-    row.append("OPT")
-  else:
-    row.append("others")
-  return row
-
-def rewrite_transformer_kernel(row):
-  if (row[4].find("Transpose") != -1):
-    row.append("Transpose")
-  elif (row[4].find("Wgrad") != -1):
-    row.append("wgrad")
-  elif (row[4].find("wgrad") != -1):
-    row.append("wgrad")
-  elif (row[4].find("dgrad") != -1):
-    row.append("dgrad")
-  else:
-    row.append("others")
-  return row
-
-def rewrite_dlrm_kernel(row):
-  if (row[4].find("gemm") != -1):
-    row.append("GEMM")
-  elif (row[4].find("broadcast_139") != -1):
-    row.append("Broadcast")
-  elif (row[4].find("wgrad") != -1):
-    row.append("wgrad")
-  elif (row[4].find("dgrad") != -1):
-    row.append("dgrad")
-  else:
-    row.append("others")
-  return row
 
 if __name__ == "__main__":
   args = parser.parse_args()
@@ -146,6 +24,8 @@ if __name__ == "__main__":
     model = "transformer"
   elif args.model.find("dlrm") != -1:
     model = "dlrm"
+  elif args.model.find("vit") != -1:
+    model = "vit"
   else:
     model = args.model
   print(model)
@@ -189,6 +69,8 @@ if __name__ == "__main__":
         row = rewrite_transformer_kernel(row)
       elif model == "dlrm":
         row = rewrite_dlrm_kernel(row)
+      elif model == "vit":
+        row = rewrite_vit_kernel(row)
       else:
         pass
     csv_to_rewrite.writerow(row)
