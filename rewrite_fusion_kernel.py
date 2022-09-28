@@ -31,6 +31,14 @@ def rewrite_fusion_kernel(hlo_table, model):
           continue
         else:
           metadata_list.append(parse_vit_metadata(metadata))
+      elif model == "transformer":
+        parsed_metadata = parse_transformer_metadata(metadata)
+        if parsed_metadata in metadata_list:
+          continue
+        elif parsed_metadata is None:
+          continue
+        else:
+          metadata_list.append(parse_transformer_metadata(metadata))
       else:
         parsed_metadata = parse_cnn_metadata(metadata)
         if parsed_metadata in metadata_list:

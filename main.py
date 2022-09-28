@@ -26,6 +26,8 @@ if __name__ == "__main__":
     model = "dlrm"
   elif args.model.find("vit") != -1:
     model = "vit"
+  elif args.model.find("transformer") != -1:
+    model = "transformer"
   else:
     model = args.model
   print(model)
@@ -71,6 +73,8 @@ if __name__ == "__main__":
         row = rewrite_dlrm_kernel(row)
       elif model == "vit":
         row = rewrite_vit_kernel(row)
+      elif model == "transformer":
+        row = rewrite_transformer_kernel(row)
       else:
         pass
     csv_to_rewrite.writerow(row)
