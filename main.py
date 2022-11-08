@@ -20,14 +20,14 @@ if __name__ == "__main__":
     model = "resnet"
   elif args.model.find("mobilenet") != -1:
     model = "mobilenet"
-  elif args.model.find("transformer") != -1:
-    model = "transformer"
-  elif args.model.find("dlrm") != -1:
-    model = "dlrm"
   elif args.model.find("vit") != -1:
     model = "vit"
   elif args.model.find("transformer") != -1:
     model = "transformer"
+  elif args.model.find("dlrm") != -1:
+    model = "dlrm"
+  elif args.model.find("lstm") != -1:
+    model = "lstm"
   else:
     model = args.model
   print(model)
@@ -67,14 +67,14 @@ if __name__ == "__main__":
         row = rewrite_resnet_kernel(row)
       elif model == "mobilenet":
         row = rewrite_mobilenet_kernel(row)
-      elif model == "transformer":
-        row = rewrite_transformer_kernel(row)
-      elif model == "dlrm":
-        row = rewrite_dlrm_kernel(row)
       elif model == "vit":
         row = rewrite_vit_kernel(row)
+      elif model == "dlrm":
+        row = rewrite_dlrm_kernel(row)
       elif model == "transformer":
         row = rewrite_transformer_kernel(row)
+      elif model == "lstm":
+        row = rewrite_lstm_kernel(row)
       else:
         pass
     csv_to_rewrite.writerow(row)

@@ -93,34 +93,6 @@ def rewrite_mobilenet_kernel(row):
     row.append("others")
   return row
 
-def rewrite_transformer_kernel(row):
-  if (row[4].find("Transpose") != -1):
-    row.append("Transpose")
-  elif (row[4].find("Wgrad") != -1):
-    row.append("wgrad")
-  elif (row[4].find("wgrad") != -1):
-    row.append("wgrad")
-  elif (row[4].find("dgrad") != -1):
-    row.append("dgrad")
-  else:
-    row.append("others")
-  return row
-
-def rewrite_dlrm_kernel(row):
-  if (row[4].find("gemm") != -1):
-    row.append("GEMM")
-  elif (row[4].find("broadcast") != -1):
-    row.append("Broadcast")
-  elif (row[4].find("wgrad") != -1):
-    row.append("wgrad")
-  elif (row[4].find("dgrad") != -1):
-    row.append("dgrad")
-  elif (row[4].find("add") != -1):
-    row.append("Elementwise")
-  else:
-    row.append("others")
-  return row
-
 def rewrite_vit_kernel(row):
   if (row[4].find("gemm") != -1):
     row.append("GEMM")
@@ -149,10 +121,6 @@ def rewrite_transformer_kernel(row):
     row.append("Transpose")
   elif (row[4].find("broadcast") != -1):
     row.append("Broadcast")
-  elif (row[4].find("wgrad") != -1):
-    row.append("wgrad")
-  elif (row[4].find("dgrad") != -1):
-    row.append("dgrad")
   elif (row[4].find("add") != -1):
     row.append("Elementwise")
   elif (row[4].find("mul") != -1):
@@ -163,6 +131,40 @@ def rewrite_transformer_kernel(row):
     row.append("Reduction")
   elif (row[4].find("RandomKernel") != -1):
     row.append("RandomKernel")
+  elif (row[4].find("cudnn") != -1 and (row[4].find("interior") != -1)):
+    row.append("Conv")
+  else:
+    row.append("others")
+  return row
+
+def rewrite_dlrm_kernel(row):
+  if (row[4].find("gemm") != -1):
+    row.append("GEMM")
+  elif (row[4].find("Transpose") != -1):
+    row.append("Transpose")
+  elif (row[4].find("broadcast") != -1):
+    row.append("Broadcast")
+  elif (row[4].find("add") != -1):
+    row.append("Elementwise")
+  elif (row[4].find("reduce") != -1):
+    row.append("Reduction")
+  else:
+    row.append("others")
+  return row
+
+def rewrite_lstm_kernel(row):
+  if (row[4].find("gemm") != -1):
+    row.append("GEMM")
+  elif (row[4].find("Transpose") != -1):
+    row.append("Transpose")
+  elif (row[4].find("add") != -1):
+    row.append("Elementwise")
+  elif (row[4].find("mul") != -1):
+    row.append("Elementwise")
+  elif (row[4].find("div") != -1):
+    row.append("Elementwise")
+  elif (row[4].find("reduce") != -1):
+    row.append("Reduction")
   else:
     row.append("others")
   return row

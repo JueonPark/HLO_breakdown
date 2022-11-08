@@ -121,13 +121,41 @@ def parse_transformer_metadata(input):
     return "Gelu"
   elif (input.find("Relu") != -1):
     return "Relu"
-  # elif (input.find("add") != -1):
-  #   return "Elementwise"
-  # elif (input.find("Mul") != -1):
-  #   return "Elementwise"
-  # elif (input.find("Softmax") != -1):
-  #   return "Softmax"
-  # elif (input.find("BiasAdd") != -1):
-  #   return "Biasadd"
+  else:
+    return None
+
+def parse_dlrm_metadata(input):
+  # if (input.find("gradient_tape") != -1):
+  #   return "backward"
+  if (input.find("SparseSoftmaxCrossEntropyWithLogits") != -1):
+    return "Loss"
+  elif (input.find("softmax_cross_entropy_with_logits") != -1):
+    return "Loss"
+  elif (input.find("ResourceApplyAdam") != -1):
+    return "Adam"
+  elif (input.find("AssignAddVariableOp") != -1):
+    return "Add"
+  elif (input.find("Relu") != -1):
+    return "Relu"
+  else:
+    return None
+
+def parse_lstm_metadata(input):
+  # if (input.find("gradient_tape") != -1):
+  #   return "backward"
+  if (input.find("SparseSoftmaxCrossEntropyWithLogits") != -1):
+    return "Loss"
+  elif (input.find("softmax_cross_entropy_with_logits") != -1):
+    return "Loss"
+  elif (input.find("ResourceApplyAdam") != -1):
+    return "Adam"
+  elif (input.find("AssignAddVariableOp") != -1):
+    return "Add"
+  elif (input.find("Relu") != -1):
+    return "Relu"
+  elif (input.find("Sigmoid") != -1):
+    return "Sigmoid"
+  elif (input.find("sigmoid") != -1):
+    return "Sigmoid"
   else:
     return None

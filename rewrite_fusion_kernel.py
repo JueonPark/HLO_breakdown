@@ -39,6 +39,22 @@ def rewrite_fusion_kernel(hlo_table, model):
           continue
         else:
           metadata_list.append(parse_transformer_metadata(metadata))
+      elif model == "dlrm":
+        parsed_metadata = parse_dlrm_metadata(metadata)
+        if parsed_metadata in metadata_list:
+          continue
+        elif parsed_metadata is None:
+          continue
+        else:
+          metadata_list.append(parse_dlrm_metadata(metadata))
+      elif model == "lstm":
+        parsed_metadata = parse_lstm_metadata(metadata)
+        if parsed_metadata in metadata_list:
+          continue
+        elif parsed_metadata is None:
+          continue
+        else:
+          metadata_list.append(parse_lstm_metadata(metadata))
       else:
         parsed_metadata = parse_cnn_metadata(metadata)
         if parsed_metadata in metadata_list:
