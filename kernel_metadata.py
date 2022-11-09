@@ -7,6 +7,12 @@ def rewrite_bert_kernel(row):
     row.append("dwFC")
   elif (row[4].find("cudnn") != -1):
     row.append("cudnn")
+  elif (row[4].find("convert") != -1):
+    row.append("Convert")
+  elif (row[4].find("reduce") != -1):
+    row.append("Reduction")
+  elif (row[4].find("pad") != -1):
+    row.append("Pad")
   else:
     row.append("others")
   return row
@@ -129,6 +135,8 @@ def rewrite_transformer_kernel(row):
     row.append("Elementwise")
   elif (row[4].find("reduce") != -1):
     row.append("Reduction")
+  elif (row[4].find("log") != -1):
+    row.append("Log")
   elif (row[4].find("RandomKernel") != -1):
     row.append("RandomKernel")
   elif (row[4].find("cudnn") != -1 and (row[4].find("interior") != -1)):
@@ -148,6 +156,8 @@ def rewrite_dlrm_kernel(row):
     row.append("Elementwise")
   elif (row[4].find("reduce") != -1):
     row.append("Reduction")
+  elif (row[4].find("log") != -1):
+    row.append("Log")
   else:
     row.append("others")
   return row
@@ -165,6 +175,8 @@ def rewrite_lstm_kernel(row):
     row.append("Elementwise")
   elif (row[4].find("reduce") != -1):
     row.append("Reduction")
+  elif (row[4].find("log") != -1):
+    row.append("Log")
   else:
     row.append("others")
   return row
