@@ -57,9 +57,9 @@ if __name__ == "__main__":
 
   for row in csv_result:
     row[4] == row[4].split("__")[0]
-    print(row)
+    # print(row)
     try:
-      print(breakdown[row[4]])
+      # print(breakdown[row[4]])
       row.append(breakdown[row[4]])
     except:
       if model == "bert":
