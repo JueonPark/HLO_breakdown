@@ -77,18 +77,8 @@ def parse_vit_metadata(input):
     return "Transpose"
   elif (input.find("dropout") != -1):
     return "Dropout"
-  elif (input.find("Gelu") != -1):
-    return "Gelu"
   elif (input.find("Relu") != -1):
     return "Relu"
-  # elif (input.find("add") != -1):
-  #   return "Elementwise"
-  # elif (input.find("Mul") != -1):
-  #   return "Elementwise"
-  # elif (input.find("Softmax") != -1):
-  #   return "Softmax"
-  # elif (input.find("BiasAdd") != -1):
-  #   return "Biasadd"
   else:
     return None
 
@@ -148,6 +138,8 @@ def parse_lstm_metadata(input):
   elif (input.find("softmax_cross_entropy_with_logits") != -1):
     return "Loss"
   elif (input.find("ResourceApplyAdam") != -1):
+    return "Adam"
+  elif (input.find("Adam") != -1):
     return "Adam"
   elif (input.find("AssignAddVariableOp") != -1):
     return "Add"

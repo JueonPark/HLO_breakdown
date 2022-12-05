@@ -70,12 +70,12 @@ def rewrite_fusion_kernel(hlo_table, model):
     output_name = "Fusion"
     if len(metadata_list) != 0:
       output_name += "("
-    for metadata in metadata_list:
-      output_name += metadata
-      if metadata != metadata_list[-1]:
-        output_name += "+"
-    if len(metadata_list) != 0:
-      output_name += ")"
+      for metadata in metadata_list:
+        output_name += metadata
+        if metadata != metadata_list[-1]:
+          output_name += "+"
+      if len(metadata_list) != 0:
+        output_name += ")"
     hlo_breakdown[hlo_fusion] = output_name
   return hlo_breakdown
 

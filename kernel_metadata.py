@@ -13,6 +13,8 @@ def rewrite_bert_kernel(row):
     row.append("Reduction")
   elif (row[4].find("pad") != -1):
     row.append("Pad")
+  elif (row[4].find("fusion") != -1):
+    row.append("Fusion")
   else:
     row.append("others")
   return row
@@ -54,6 +56,8 @@ def rewrite_resnet_kernel(row):
     row.append("BN+ELEMWISE")
   elif (row[4].find("adam") != -1):
     row.append("OPT")
+  elif (row[4].find("fusion") != -1):
+    row.append("Fusion")
   else:
     row.append("others")
   return row
@@ -95,6 +99,8 @@ def rewrite_mobilenet_kernel(row):
     row.append("BN+ELEMWISE")
   elif (row[4].find("adam") != -1):
     row.append("OPT")
+  elif (row[4].find("fusion") != -1):
+    row.append("Fusion")
   else:
     row.append("others")
   return row
@@ -116,6 +122,8 @@ def rewrite_vit_kernel(row):
     row.append("Elementwise")
   elif (row[4].find("div") != -1):
     row.append("Elementwise")
+  elif (row[4].find("fusion") != -1):
+    row.append("Fusion")
   else:
     row.append("others")
   return row
@@ -141,6 +149,8 @@ def rewrite_transformer_kernel(row):
     row.append("RandomKernel")
   elif (row[4].find("cudnn") != -1 and (row[4].find("interior") != -1)):
     row.append("Conv")
+  elif (row[4].find("fusion") != -1):
+    row.append("Fusion")
   else:
     row.append("others")
   return row
@@ -158,6 +168,8 @@ def rewrite_dlrm_kernel(row):
     row.append("Reduction")
   elif (row[4].find("log") != -1):
     row.append("Log")
+  elif (row[4].find("fusion") != -1):
+    row.append("Fusion")
   else:
     row.append("others")
   return row
@@ -177,6 +189,8 @@ def rewrite_lstm_kernel(row):
     row.append("Reduction")
   elif (row[4].find("log") != -1):
     row.append("Log")
+  elif (row[4].find("fusion") != -1):
+    row.append("Fusion")
   else:
     row.append("others")
   return row

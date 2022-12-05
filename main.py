@@ -37,14 +37,12 @@ if __name__ == "__main__":
   xla_hlo_path = pathlib.Path(xla_hlo_path_str)
   graph_paths = list(xla_hlo_path.glob("*after_optimizations.txt"))
   result_file = open(csv_path, "r")
+  # Read the csv file and change the kernel name.
   hlo_tables = []
+  breakdown = {}
   for graph_path in graph_paths:
     hlo_file = open(graph_path, "r")
-    hlo_tables.append(HloTable(hlo_file.read()).hlo_table)
-  
-  # Read the csv file and change the kernel name.
-  breakdown = {}
-  for hlo_table in hlo_tables:
+    hlo_table = HloTable(hlo_file.read()).hlo_table
     breakdown = {**breakdown, **rewrite_fusion_kernel(hlo_table, model)}
   
   # NDP
@@ -58,7 +56,10 @@ if __name__ == "__main__":
   csv_to_rewrite.writerow(header)
 
   for row in csv_result:
+    row[4] == row[4].split("__")[0]
+    print(row)
     try:
+      print(breakdown[row[4]])
       row.append(breakdown[row[4]])
     except:
       if model == "bert":
@@ -76,5 +77,6 @@ if __name__ == "__main__":
       elif model == "lstm":
         row = rewrite_lstm_kernel(row)
       else:
-        pass
+        print("unsupported model, aborting")
+        exit(-1)
     csv_to_rewrite.writerow(row)
