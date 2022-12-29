@@ -21,8 +21,6 @@ def parse_bert_metadata(input):
     return "Dropout"
   elif (input.find("Softmax") != -1):
     return "Softmax"
-  elif (input.find("BiasAdd") != -1):
-    return "Biasadd"
   elif (input.find("Gelu") != -1):
     return "Gelu"
   else:
@@ -41,8 +39,6 @@ def parse_cnn_metadata(input):
     return "BN"
   elif (input.find("batchnorm") != -1):
     return "BN"
-  elif (input.find("BiasAdd") != -1):
-    return "Biasadd"
   elif (input.find("Relu6") != -1):
     return "Relu6"
   elif (input.find("Relu") != -1):
